@@ -1,0 +1,14 @@
+@import '../variables.scss';
+
+.board {
+  display: flex;
+  flex-direction: row;
+
+  &__divider {
+    align-self: stretch;
+    min-height: 250px;
+    width: 1px;
+    margin: 36px 0 8px;
+    background-color: $secondary-color;
+  }
+}
