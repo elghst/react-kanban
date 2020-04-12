@@ -4,11 +4,11 @@ import Board from './Board/Board.jsx';
 
 import './App.scss';
 
-export default function App() {
-  return (
+const App = () => (
     <div className="wrapper">
       <CssBaseline />
       <Board />
     </div>
-  );
-}
+);
+
+export default App;

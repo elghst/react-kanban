@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Column from '../Column/Column.jsx';
 
 import './Board.scss';
 
-export default function Board() {
+const Board = () => {
+  const cards = useSelector((state) => state.cards);
+
   const toDoCards = [
     {
       title: 'testcard2',
@@ -51,7 +54,7 @@ export default function Board() {
 
   return (
     <div className="board">
-      <Column title="To Do" create="true" cards={toDoCards}></Column>
+      <Column title="To Do" create={true} cards={cards}></Column>
 
       <div className="board__divider"/>
 
@@ -62,4 +65,6 @@ export default function Board() {
       <Column title="Done" cards={doneCards}></Column>
     </div>
   );
-}
+};
+
+export default Board;
