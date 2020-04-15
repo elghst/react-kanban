@@ -7,6 +7,10 @@
   padding: 16px;
   max-width: 30%;
 
+  @media (max-width: $breakpoint) {
+    max-width: 100%;
+  }
+
   &__title {
     margin-bottom: 16px;
     font-size: 36px;
@@ -16,11 +20,11 @@
 
   &__body {
     padding: 16px 0;
+    margin-top: 36px;
 
     &_type {
-      // FIXME: naming
-      &_no-button-top {
-        margin-top: 36px;
+      &_with-button {
+        margin-top: 0;
       }
     }
   }

@@ -1,41 +1,30 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { Button } from '@material-ui/core';
-import { createCard } from '../../actions';
-
 import Card from '../Card/Card.jsx';
 
 import './Column.scss';
 
-const Column = ({ cards = [], title, create }) => {
-  const dispatch = useDispatch();
-
-  return (
+const Column = ({ createButton, cards = [], title }) => (
     <div className="column">
       <div className="column__title">
         {title}
       </div>
 
-      {
-        create && <Button variant="outlined" onClick={() => dispatch(createCard('test title', 'test descr'))}>New</Button>
-      }
+      { createButton }
 
-      <div className={create ? 'column__body' : 'column__body column__body_type_no-button-top'}>
-        { cards.map((card, index) => <Card
-            title={card.title}
-            description={card.description}
-            key={index}
+      <div className={createButton ? 'column__body column__body_type_with-button' : 'column__body'}>
+        { cards.map((card) => <Card
+            card={card}
+            key={card.id}
           />) }
       </div>
     </div>
-  );
-};
+);
 
 export default Column;
 
 Column.propTypes = {
+  createButton: propTypes.node,
   cards: propTypes.array,
   title: propTypes.string.isRequired,
-  create: propTypes.bool,
 };

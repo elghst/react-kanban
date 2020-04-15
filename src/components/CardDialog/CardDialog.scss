@@ -1,0 +1,18 @@
+@import '../variables.scss';
+
+.card-dialog {
+  min-width: 480px;
+}
+
+// Перекрываем цветовую схему material-ui
+.button {
+  &_color {
+    &_green {
+      color: $primary-color !important;
+    }
+
+    &_red {
+      color: $warning-color !important;
+    }
+  }
+}

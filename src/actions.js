@@ -11,8 +11,8 @@ export function openCreateCardDialog() {
   return { type: OPEN_CREATE_CARD_DIALOG };
 }
 
-export function openEditCardDialog(index) {
-  return { type: OPEN_EDIT_CARD_DIALOG, index };
+export function openEditCardDialog(id) {
+  return { type: OPEN_EDIT_CARD_DIALOG, id };
 }
 
 export function closeCardDialog() {
@@ -23,10 +23,10 @@ export function createCard(title, description) {
   return { type: CREATE_CARD, title, description };
 }
 
-export function editCard(index, newCard) {
-  return { type: EDIT_CARD, index, newCard };
+export function editCard(id, newCard) {
+  return { type: EDIT_CARD, id, newCard };
 }
 
-export function removeCard(index) {
-  return { type: REMOVE_CARD, index };
+export function removeCard(id) {
+  return { type: REMOVE_CARD, id };
 }

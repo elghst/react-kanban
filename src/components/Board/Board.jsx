@@ -1,60 +1,39 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
 import Column from '../Column/Column.jsx';
+import { openCreateCardDialog } from '../../actions';
 
 import './Board.scss';
 
 const Board = () => {
-  const cards = useSelector((state) => state.cards);
+  const dispatch = useDispatch();
+  const cards = useSelector((state) => state.cards) || [];
+  const toDoCards = [];
+  const inProgressCards = [];
+  const doneCards = [];
 
-  const toDoCards = [
-    {
-      title: 'testcard2',
-      description: 'test description',
-    },
-    {
-      title: 'test card3',
-      description: 'test description',
-    },
-    {
-      title: 'test card4',
-      description: 'test description',
-    },
-  ];
+  cards.forEach((card) => {
+    if (card.column === 'toDo') {
+      toDoCards.push(card);
+    } else if (card.column === 'inProgress') {
+      inProgressCards.push(card);
+    } else if (card.column === 'Done') {
+      doneCards.push(card);
+    }
+  });
 
-  const inProgressCards = [
-    {
-      title: 'test card1',
-      description: 'test description',
-    },
-    {
-      title: 'testcard2',
-      description: 'test description',
-    },
-    {
-      title: 'test card3',
-      description: 'test description',
-    },
-    {
-      title: 'test card4',
-      description: 'test description',
-    },
-  ];
-
-  const doneCards = [
-    {
-      title: 'test card3',
-      description: 'test description',
-    },
-    {
-      title: 'test card4',
-      description: 'test description',
-    },
-  ];
+  const createNewCardButton = (
+    <Button
+      variant="outlined"
+      onClick={() => dispatch(openCreateCardDialog())}
+    >
+      New
+    </Button>);
 
   return (
     <div className="board">
-      <Column title="To Do" create={true} cards={cards}></Column>
+      <Column title="To Do" createButton={createNewCardButton} cards={toDoCards}></Column>
 
       <div className="board__divider"/>
 

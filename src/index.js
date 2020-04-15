@@ -9,8 +9,6 @@ import './components/App.scss';
 
 const store = createStore(kanbanApp);
 
-store.subscribe(() => console.log('state is', store.getState()));
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

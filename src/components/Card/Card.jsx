@@ -1,40 +1,28 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import propTypes from 'prop-types';
+import { openEditCardDialog } from '../../actions';
 
 import './Card.scss';
 
-import CardDialog from '../CardDialog/CardDialog.jsx';
-
-const Card = ({ title, description }) => {
-  let isDialogOpen = false;
-  const openCardDialog = () => {
-    isDialogOpen = true;
-    console.log('Card dialog open');
-  };
-
-  const closeCardDialog = () => {
-    isDialogOpen = false;
-  };
+const Card = ({ card }) => {
+  const dispatch = useDispatch();
 
   return (
-    <React.Fragment>
-      <div className="card" onClick={openCardDialog}>
+      <div className="card" onClick={() => dispatch(openEditCardDialog(card.id))}>
         <div className="card__title">
-          {title}
+          {card.title}
         </div>
 
         <div className="card__description">
-          {description}
+          {card.description}
         </div>
       </div>
-      <CardDialog open={isDialogOpen} onClose={closeCardDialog}/>
-    </React.Fragment>
   );
 };
 
 export default Card;
 
 Card.propTypes = {
-  title: propTypes.string.isRequired,
-  description: propTypes.string.isRequired,
+  card: propTypes.object.isRequired,
 };
